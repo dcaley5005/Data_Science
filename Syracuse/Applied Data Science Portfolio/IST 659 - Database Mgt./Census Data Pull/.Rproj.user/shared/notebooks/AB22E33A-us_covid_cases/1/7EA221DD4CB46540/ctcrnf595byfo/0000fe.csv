@@ -1,0 +1,8 @@
+"0",""
+"0",""
+"0","ggplotly("
+"0","  covid_summary %>% ggplot() +"
+"0","                      geom_line(aes(x = date, y = cases_rolling)) +"
+"0","                      geom_col(aes(x = date, y = cases_rolling), fill = ""blue"") +"
+"0","                      scale_y_continuous(labels = scales::comma)"
+"0",")"
