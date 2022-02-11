@@ -1,0 +1,160 @@
+---
+title: "Homework 10"
+author: "Daniel Caley"
+date: "8/29/2021"
+output: 
+  pdf_document:
+    toc: TRUE
+---
+
+
+The homework for week 10 is exercises 2, 5, 6, 7, and 8 on pages 272 and 273.
+
+```{r setup, include=FALSE}
+
+# install.packages("nlme")
+library(nlme)
+library(car)
+library(tidyverse)
+library(changepoint)
+
+library(bcp)
+
+
+
+```
+
+
+\pagebreak
+# Question 2
+
+Download and library the `nlme` package and use data `(“Blackmore”)` to activate the `Blackmore` data set. Inspect the data and create a box plot showing the exercise level at different ages. Run a repeated measures `ANOVA` to compare exercise levels at ages 8, 10, and 12 using `aov()`. You can use a command like, `myData <-Blackmore[Blackmore$age <=12,]`, to subset the data. Keeping in mind that the data will need to be balanced before you can conduct this analysis, try running a command like this, `table(myData$subject,myData$age)`, as the starting point for cleaning up the data set.
+
+
+```{r}
+
+MyBlackmore <- Blackmore %>% mutate(age = floor(age))
+
+str(MyBlackmore)
+summary(MyBlackmore)
+
+boxplot(MyBlackmore, main= "Boxplot By Each Type", xlab="Metric Type", 
+        ylab="Metric #")
+
+boxplot(exercise~age, MyBlackmore, main= "Exercise Level By Age", xlab="Age", 
+        ylab="Exercise Level")
+
+MyBlackmoreAges <- MyBlackmore[MyBlackmore$age %in% c(8,10,12),]
+
+
+boxplot(exercise~age, MyBlackmoreAges, 
+        main= "Exercise Level By Age", 
+        xlab="Age", 
+        ylab="Exercise Level")
+                      
+MyBlackmoreTable <-  table(MyBlackmoreAges$subject,MyBlackmoreAges$age)
+
+MyBlackmoreAgesWide <- MyBlackmoreAges %>% select(-group) %>% 
+  pivot_wider(names_from = age, values_from = exercise)
+
+summary(MyBlackmoreAgesWide)
+
+print("With Out Removing Rows with Missing Records")
+summary(aov(exercise~age, data = MyBlackmoreAges))
+
+CompleteValues <- rowSums(MyBlackmoreTable)==3
+CompleteValues <- CompleteValues[CompleteValues == TRUE]
+CompleteValues <- as.numeric(names(CompleteValues))
+
+MyBlackmoreAges <- MyBlackmoreAges[MyBlackmoreAges$subject %in% CompleteValues,]
+
+
+aovBlackmore <- aov(exercise~age+Error(subject),data = MyBlackmoreAges)
+summary(aovBlackmore)
+
+```
+
+
+## Interpretting Results
+The Median value ranges from 0.880 to 1.480 for ages 8 through 12.  All of them on average is about 1.  What can be seen here is that by age increases exercise also increases.  This can be seen by looking identifying the change in the box plots for the 3rd quartiles.  Rather the variation is increasing by age and not as consistent in younger ages.  Further proof of this change is shown when looking at analysis of variance `aov` function.  The p-value is 1.51e-13 which is less than 0.05, indicating that their is significant between the age and the amount of exercise they do per week. 
+
+
+\pagebreak
+# Question 5
+
+Given that the `AirPassengers` data set has a substantial growth trend, use `diff()` to create a difference data set. Use `plot()` to examine and interpret the results of `differencing.` Use `cpt.var()` to find the change point in the variability of the difference time series. Plot the result and describe in your own words what the change point signifies.
+
+```{r}
+
+MyAirPassengers <- AirPassengers
+
+str(MyAirPassengers)
+summary(MyAirPassengers)
+
+MyAirPassengersLag <- diff(MyAirPassengers)
+MyAirPassengersCP <- cpt.var(MyAirPassengersLag)
+MyAirPassengersCP
+
+plot(MyAirPassengers)
+plot(MyAirPassengersLag)
+plot(MyAirPassengersCP,cpt.col="red",cpt.width=5)
+
+```
+
+## Interpretting the Results
+
+The trend in the Airpassenger data set is positive, but also appears to have seasonality associated with the plots.  As time goes on though the volatility increases. This is noticed by looking at the lag of the dataset, which is a way to compare the last period to the current period.
+The change point appears to have occurs sometime after 1955 based on the plot above.  Where a significant amount of passengers increased.
+
+\pagebreak
+# Question 6
+
+Use `cpt.mean()` on the `AirPassengers` time series. Plot and interpret the results. Compare the change point of the mean that you uncovered in this case to the change point in the variance that you uncovered in Exercise 5. What do these change points suggest about the history of air travel?
+
+```{r}
+
+airLagMean <-  cpt.mean(MyAirPassengers)
+plot(airLagMean)
+
+
+
+```
+
+
+## Intepretting the Results
+
+Using the cpt.mean function shows that the confidence value is a 1 meaning that there has been a shift in the mean over time.
+
+
+# Question 7
+
+Find historical information about air travel on the Internet and/or in reference materials that sheds light on the results from Exercises 5 and 6. Write a mini-article (less than 250 words) that interprets your statistical findings from Exercises 5 and 6 in the context of the historical information you found.
+
+
+## Mini-Article
+
+In 1950 commercial jet airliners begin taking the sky kicking off the wave of traveling for business or pleasure.  Prior to this period planes were used for military purposes and little travel was taken as cabins were quite load with the propellers creating so much noise.  The advent of jet engines meant farther and quicker travel.  The industry couldn't stay in war times and had to adapt for commercial use.
+
+In just 5 short years the technology really booms and airtravel becomes a thing for many.  As more competition enters the market and the middle class begins to grow along with airliners lowering their prices and increased wages allowed consumers to take to the sky.
+
+referencing the [Flying Boat Museum](https://www.flyingboatmuseum.com/a-brief-timeline-history-of-manned-flight/) Website
+
+\pagebreak
+# Question 8
+
+Use `bcp()` on the `AirPassengers` time series. Plot and interpret the results. Make sure to contrast these results with those from Exercise 6.
+
+```{r}
+
+MyAirBCP <-  bcp(MyAirPassengersLag)
+
+plot(MyAirBCP)
+
+```
+
+## Interpretting the Results
+
+Looking at the time series data through a Bayesian approach and specifically the Posterior Probability, shows that that the probability increased around 70 months but was still quite low.  By month 110 or roughly 10 years the probability increased to 1.  The Posterior Means also shows that the shifted around 70 months as the data become wider as the cumulative months go on.
+
+
+

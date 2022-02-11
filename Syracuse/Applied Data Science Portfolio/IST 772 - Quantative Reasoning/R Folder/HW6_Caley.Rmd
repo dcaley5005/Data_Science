@@ -1,0 +1,205 @@
+---
+title: "Homework 6"
+author: "Daniel Caley"
+date: "8/14/2021"
+output: 
+  pdf_document:
+    toc: TRUE
+---
+
+The homework for week 6 is exercises 1-7 on pages 117 and 118.
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(BayesFactor)
+library(tidyverse)
+library(BEST)
+
+```
+
+\pagebreak
+
+# Question 1
+
+The data sets package (installed in R by default) contains a data set called `InsectSprays` that shows the results of an experiment with six different kinds of insecticide. For each kind of insecticide, n = 12 observations were conducted. Each observation represented the count of insects killed by the spray. 
+
+
+## Understanding InsectSprays
+```{r}
+
+My_InsectSprays <- InsectSprays
+
+str(My_InsectSprays)
+summary(My_InsectSprays)
+head(My_InsectSprays, 5)
+
+```
+
+## What is The Outcome Variable
+In this experiment, what is the dependent variable (outcome) and what is the independent variable? 
+
+-   The dependent variable is is the count column or the count of insects killed by the spray.
+-   The independent variable is the spray.
+
+
+## What is the total number of observations?
+
+
+```{r}
+
+length(My_InsectSprays$count)
+
+```
+
+
+# Question 2
+
+After running the `aov()` procedure on the `InsectSprays` data set, the “Mean Sq” for spray is 533.8 and the “Mean Sq” for Residuals is 15.4. Which one of these is the between groups variance and which one is the within groups variance? Explain your answers briefly in your own words.
+
+-   Between group variance is the Mean Sq for spray of 533.8.  The between groups shows how much of the variation in the means between the groups being tested.
+-   Within group variance is the Mean Sq for residuals is 15.4.  The within group variance shows how much of the variation is due to mixing up all of the data.
+
+
+# Question 3
+## Calculate the F-Ratio
+
+Based on the information in question 2 and your response to that question, calculate an F‐ratio by hand or using a calculator. 
+
+```{r}
+
+MeanSq_Spray <- 533.8
+MeanSq_Residual <- 15.4
+
+FRation <- MeanSq_Residual / MeanSq_Spray
+FRation
+
+```
+
+## F-Ratios
+Given everything you have learned about F‐ratios, what do you think of this one? Hint: If you had all the information you needed for a Null Hypothesis Significance Test, would you reject the null? Why or why not?
+
+This is different from what we learned previously where we would state an alpha and then if our P-value was within that percentage we would either reject or fail to reject the Null Hypothesis.  In this case when the F is statistically significant the results say nothing about which means are different.  We would reject the Null Hypothesis, but no nothing about which means are different among the insect sprays.
+
+
+## Calculate the Degree of Freedom
+
+Continuing with the `InsectSprays` example, there are six groups where each one has n = 12 observations. Calculate the degrees of freedom between groups and the degrees of freedom within groups.
+
+
+```{r}
+
+TotalObs <- length(My_InsectSprays$spray)
+TotalSpray <-  length(unique(My_InsectSprays$spray))
+
+WthinDF <- TotalObs - TotalSpray
+WthinDF
+
+BtwnDF <- TotalObs - WthinDF - 1
+
+BtwnDF
+
+```
+
+-   Within Groups DF is 66
+-   Between Groups DF is 5
+
+
+## Explain the Results
+Explain why the sum of these two values adds up to one less than the total number of observations in the data set.
+
+-   When looking at the data set of 72 observation the degree of freedom is always 1 minus the total when calculating for the grand mean.
+-   Only 5 out of the 6 groups of means can vary freely which leaves 66 within groups.
+
+# AOV Command
+
+Use R or R‐Studio to run the `aov()` command on the `InsectSprays` data set. You will have to specify the model correctly using the “~” character to separate the dependent variable from the independent variable. Place the results of the `aov()` command into a new object called `insectResults`. Run the `summary()` command on `insectResults` and interpret the results briefly in your own words. As a matter of good practice, you should state the null hypothesis, the alternative hypothesis, and what the results of the null hypothesis significance test lead you to conclude.
+
+
+```{r}
+
+insectResults <- aov(count ~ spray, data=My_InsectSprays)
+summary(insectResults)
+
+```
+
+-   The Null Hypothesis is that the sprays are not different
+-   Alternative Hypothesis is that the sprays are different from each other
+-   Results of the null hypothesis significance test leads me to conclude that due to the P value being less than 0.05. These results do not tell me which groups are different from each other.
+
+
+\pagebreak
+
+# Question 6
+
+## BayesFactor Package
+Load the `BayesFactor` package and run the `anovaBF()` command on the `InsectSprays` data set. You will have to specify the model correctly using the “~” character to separate the dependent variable from the independent variable. 
+
+
+```{r}
+
+
+
+insectResultsBF <-  anovaBF(count ~ spray, data=My_InsectSprays)
+insectResultsBF
+
+```
+
+## Produce Posterior Distributions
+Produce posterior `distributions` with the `posterior()` command and display the resulting `HDIs`.
+
+```{r}
+
+insectResultsBF <- posterior(insectResultsBF, iterations = 1000)
+summary(insectResultsBF)
+boxplot(as.matrix(insectResultsBF[,2:7]))
+
+
+```
+
+
+## Interpret the results briefly in your own words
+Interpret the results briefly in your own words, including an interpretation of the `BayesFactor` produced by the grouping variable. As a matter of good practice, you should state the two `hypotheses` that are being compared. Using the rules of thumb offered by Kass and Raftery (1995), what is the strength of this result?
+
+-   Null Hypothesis is that all the groups are the same.
+-   Alternative Hypothesis is that the groups are different.
+-   The strength of the results is that 150670600000000000000:1 in favor of an effect for insect spray is pretty strong and therefore in favor of the alternative hypothesis.  Kass and Raftery give a rule of thumb of an odds ratios of more than 150:1 are very strong evidence for the favored hypothesis.  When looking at the boxplot Spray A, B, and F are all very similar to eachother with C, D and E also being very similar to eachother.  With that being said A, B, and F are superior spays with an estimate of 4.8, 5.8, and 6.8 respective increase over the overall mean of 9.56. That is with no overlap and therefor superior to all of the other sprays.
+
+
+```{r}
+
+
+
+```
+
+
+# Question 7
+
+## Post-Hoc Testing
+In situations where the alternative hypothesis for an ANOVA is supported and there are more than two groups, it is possible to do post‐hoc testing to uncover which pairs of groups are substantially different from one another. Using the `InsectSprays` data, conduct a t‐test to compare groups C and F (preferably a Bayesian t‐test).
+
+```{r}
+
+SprayC <- InsectSprays$count[InsectSprays$spray == "C"]
+SprayF <- InsectSprays$count[InsectSprays$spray == "F"]
+
+set.seed(3)
+
+BaysianSpray <-  BESTmcmc(SprayC, SprayF)
+BaysianSpray
+
+plot(BaysianSpray)
+
+```
+
+## Interpret the results of this t‐test.
+
+-   The 95% HDI goes from -19 to -10.2 without crossing 0.  Meaning that the mean difference between group C and F have a 95% change of falling between the ranges.
+-   The results show that most likley the mean difference falls at -14.5.
+-   Due to the results falling below 0 there is a clear difference between the 2 groups with F having a higher count of insect than C.  The objective of the insect spray products was to kill more insects, spray F is therefore the clear winner due to having more dead insects.
+
+
+
+
+
+
+
