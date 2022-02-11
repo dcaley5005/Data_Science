@@ -1,0 +1,4 @@
+"0",""
+"0","# sort the rules to view most relevant first (confidence)"
+"0","rules <- sort(rules, by=""confidence"", decreasing=TRUE)"
+"0","inspect(rules)"

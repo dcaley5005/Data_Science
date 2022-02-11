@@ -1,0 +1,15 @@
+"0","## Cleaning the Ratings
+CleanFlix <- CleanFlix %>% mutate(
+                                  Rating = str_remove(Rating,""TV-""),
+                                  Rating = case_when(Rating == ""Y"" ~ ""G"",
+                                                     Rating == ""Y7"" ~ ""PG"",
+                                                     Rating == ""14"" ~ ""PG-13"",
+                                                     Rating == ""MA"" ~ ""R"",
+                                                     Rating)
+                                  )
+"
+"2","Error: Problem with `mutate()` column `Rating`.
+[34mℹ[39m `Rating = case_when(...)`.
+[31mx[39m Case 5 (`Rating == ""Y"" ~ ""G""`) must be a two-sided formula, not a character vector.
+[90mRun `rlang::last_error()` to see where the error occurred.[39m
+"

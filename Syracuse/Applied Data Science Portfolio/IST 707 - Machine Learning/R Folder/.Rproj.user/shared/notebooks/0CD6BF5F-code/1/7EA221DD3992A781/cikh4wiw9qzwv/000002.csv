@@ -1,0 +1,4 @@
+"0","  # Set the Cluster as a variable in the data frame
+  Netflix_Norm_DF_Freq$Clusters <- as.factor(Clusters$cluster)
+"
+"2","Coercing LHS to a list"

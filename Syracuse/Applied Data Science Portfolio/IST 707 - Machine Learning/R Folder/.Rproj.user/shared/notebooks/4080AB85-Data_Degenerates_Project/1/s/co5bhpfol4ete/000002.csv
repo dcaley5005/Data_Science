@@ -1,0 +1,9 @@
+"0",""
+"0","# generate rules"
+"0","# Dan why did you set the support, confidence, and maxlen as these values."
+"0","rules <- apriori(GenreTransactions,  parameter = list(supp = 0.001, conf = 0.8))"
+"1","Apriori
+"
+"1","
+Parameter specification:
+"

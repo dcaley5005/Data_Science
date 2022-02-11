@@ -1,0 +1,4 @@
+"0",""
+"0","# Create an item frequency plot for the top 20 items"
+"0","itemFrequencyPlot(GenreTransactions,topN=20,type=""absolute"")"
+"0",""
