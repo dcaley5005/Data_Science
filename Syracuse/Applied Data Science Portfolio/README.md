@@ -1,4 +1,4 @@
-[Syracuse Logo](https://github.com/dcaley5005/Data_Science/blob/main/Syracuse/Applied%20Data%20Science%20Portfolio/syracuse_logo.png)
+![Syracuse Logo](https://github.com/dcaley5005/Data_Science/blob/main/Syracuse/Applied%20Data%20Science%20Portfolio/syracuse_logo.png)
 
 # Masters in Applied Data Science - Syracuse University
 
