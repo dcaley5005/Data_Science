@@ -1,9 +1,15 @@
 <img align="right" width="150" height="150" src="https://github.com/dcaley5005/Data_Science/blob/main/Syracuse/Applied%20Data%20Science%20Portfolio/syracuse_logo.png">
 
-# IST 659 - Database Management
+# IST 718 - Big Data Analytics
 
-IST 659 is an introductory course to database management systems. This course examines data structures, file organizations, concepts, and principles of database management systems (DBMS) as well as data analysis, database design, data modeling, database management, and database implementation. More specifically, it introduces hierarchical, network, and relational data models; entity-relationship modeling; basics of Structured Query Language (SQL); data normalization; and database design.
+After taking this course, the students will be able to:
+1. Obtain data and explain data structures and data elements.
+2. Scrub data by applying scripting methods, to include debugging, for data manipulation in Python, R or other languages.
+3. Explore data by analyzing using qualitative techniques including descriptive statistics, summarization, and visualizations.
+4. Model relationships between data using the appropriate analytical methodologies matched to the information and the needs of clients and users.
+5. Interpret the data, model, analysis, and findings. Communicate the results in a meaningful way.
 
-Using Microsoft’s Access and SQL Server DBMSs as implementation vehicles, this course provides hands-on experience in database design and implementation through assignments, lab exercises, and course projects. This course also introduces advanced database concepts such as transaction management and concurrency control, distributed databases, multitier client/server architectures, web-based database applications, data warehousing, and NoSQL.
-
-### [Database Management Project](https://github.com/dcaley5005/Data_Science/blob/main/Syracuse/Applied%20Data%20Science%20Portfolio/IST%20659%20-%20Database%20Management/Socioeconomic%20COVID%20Database.pdf)
+### [Clustering and Machine Learning Models](https://github.com/dcaley5005/Data_Science/blob/main/Syracuse/Applied%20Data%20Science%20Portfolio/IST%20718%20-%20Big%20Data%20Analytics/Clustering%20and%20Maching%20Learning%20Models/Customer%20Behavior%20Machine%20Learning%20Model.pdf)
+### [Image Recognition Using Machine Learning](https://github.com/dcaley5005/Data_Science/blob/main/Syracuse/Applied%20Data%20Science%20Portfolio/IST%20659%20-%20Database%20Management/Socioeconomic%20COVID%20Database.pdf)
+### [Transforming Big Data and Linear Regression](https://github.com/dcaley5005/Data_Science/blob/main/Syracuse/Applied%20Data%20Science%20Portfolio/IST%20659%20-%20Database%20Management/Socioeconomic%20COVID%20Database.pdf)
+### [Using Prophet to Forecast House Prices](https://github.com/dcaley5005/Data_Science/blob/main/Syracuse/Applied%20Data%20Science%20Portfolio/IST%20659%20-%20Database%20Management/Socioeconomic%20COVID%20Database.pdf)
