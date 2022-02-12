@@ -1,9 +1,7 @@
 <img align="right" width="150" height="150" src="https://github.com/dcaley5005/Data_Science/blob/main/Syracuse/Applied%20Data%20Science%20Portfolio/syracuse_logo.png">
 
-# IST 659 - Database Management
+# IST 687 - Intro to Data Science
 
-IST 659 is an introductory course to database management systems. This course examines data structures, file organizations, concepts, and principles of database management systems (DBMS) as well as data analysis, database design, data modeling, database management, and database implementation. More specifically, it introduces hierarchical, network, and relational data models; entity-relationship modeling; basics of Structured Query Language (SQL); data normalization; and database design.
+The course introduces students to applied examples of data collection, processing, transformation, management, and analysis to provide students with hands-on introduction to data science experience. Students will explore key concepts related to data science, including applied statistics, information visualization, text mining and machine learning. “R”, the open source statistical analysis and visualization system, will be used throughout the course. R is reckoned by many to be the most popular choice among data analysts worldwide; having knowledge and skill with using it is considered a valuable and marketable job skill for most data scientists.
 
-Using Microsoft’s Access and SQL Server DBMSs as implementation vehicles, this course provides hands-on experience in database design and implementation through assignments, lab exercises, and course projects. This course also introduces advanced database concepts such as transaction management and concurrency control, distributed databases, multitier client/server architectures, web-based database applications, data warehousing, and NoSQL.
-
-### [Database Management Project](https://github.com/dcaley5005/Data_Science/blob/main/Syracuse/Applied%20Data%20Science%20Portfolio/IST%20659%20-%20Database%20Management/Socioeconomic%20COVID%20Database.pdf)
+### [Intro to Data Science Project](https://dcaley5005.github.io/Data_Science/Syracuse/Applied%20Data%20Science%20Portfolio/IST%20687%20-%20Intro%20to%20Data%20Science/Data%20Scientist%20Salary%20Model.html)
