@@ -10,6 +10,6 @@ After taking this course, the students will be able to:
 5. Interpret the data, model, analysis, and findings. Communicate the results in a meaningful way.
 
 ### [Clustering and Machine Learning Models](https://github.com/dcaley5005/Data_Science/blob/main/Syracuse/Applied%20Data%20Science%20Portfolio/IST%20718%20-%20Big%20Data%20Analytics/Clustering%20and%20Maching%20Learning%20Models/Customer%20Behavior%20Machine%20Learning%20Model.pdf)
-### [Image Recognition Using Machine Learning](https://github.com/dcaley5005/Data_Science/blob/main/Syracuse/Applied%20Data%20Science%20Portfolio/IST%20659%20-%20Database%20Management/Socioeconomic%20COVID%20Database.pdf)
-### [Transforming Big Data and Linear Regression](https://github.com/dcaley5005/Data_Science/blob/main/Syracuse/Applied%20Data%20Science%20Portfolio/IST%20659%20-%20Database%20Management/Socioeconomic%20COVID%20Database.pdf)
-### [Using Prophet to Forecast House Prices](https://github.com/dcaley5005/Data_Science/blob/main/Syracuse/Applied%20Data%20Science%20Portfolio/IST%20659%20-%20Database%20Management/Socioeconomic%20COVID%20Database.pdf)
+### [Image Recognition Using Machine Learning](https://github.com/dcaley5005/Data_Science/blob/main/Syracuse/Applied%20Data%20Science%20Portfolio/IST%20718%20-%20Big%20Data%20Analytics/Image%20Recognition%20Using%20Machine%20Learning/IST_718_Dan_Caley_Lab9.pdf)
+### [Transforming Big Data and Linear Regression](https://github.com/dcaley5005/Data_Science/blob/main/Syracuse/Applied%20Data%20Science%20Portfolio/IST%20718%20-%20Big%20Data%20Analytics/Transforming%20Big%20Data%20and%20Linear%20Regression/IST_718_Dan_Caley_Lab_1.ipynb)
+### [Using Prophet to Forecast House Prices](https://github.com/dcaley5005/Data_Science/tree/main/Syracuse/Applied%20Data%20Science%20Portfolio/IST%20718%20-%20Big%20Data%20Analytics/Using%20Prophet%20to%20Forecast%20House%20Prices)
