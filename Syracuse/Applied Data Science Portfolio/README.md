@@ -1,4 +1,4 @@
-<img align="right" width="100" height="100" src="https://github.com/dcaley5005/Data_Science/blob/main/Syracuse/Applied%20Data%20Science%20Portfolio/syracuse_logo.png">
+<img align="right" width="150" height="150" src="https://github.com/dcaley5005/Data_Science/blob/main/Syracuse/Applied%20Data%20Science%20Portfolio/syracuse_logo.png">
 
 # Masters in Applied Data Science - Syracuse University
 
