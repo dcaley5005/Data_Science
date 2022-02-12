@@ -1,7 +1,6 @@
-![Syracuse Logo](https://github.com/dcaley5005/Data_Science/blob/main/Syracuse/Applied%20Data%20Science%20Portfolio/syracuse_logo.png)
-
 # Masters in Applied Data Science - Syracuse University
 
+<img align="right" width="100" height="100" src="https://github.com/dcaley5005/Data_Science/blob/main/Syracuse/Applied%20Data%20Science%20Portfolio/syracuse_logo.png">
 As an interdisciplinary program, the master’s in Applied Data Science provides the opportunity to learn applied mathematics and statistics on large complex data sets.
 
 ## Overview
