@@ -1,0 +1,23 @@
+---
+title: "Time Series Graphics"
+format: html
+---
+
+
+```{r echo=FALSE}
+library(fpp3)
+
+
+```
+
+
+# Chapter 2: Time Series Graphic
+
+[Book Reference](https://otexts.com/fpp3/graphics.html)
+
+```{r}
+
+
+
+```
+
