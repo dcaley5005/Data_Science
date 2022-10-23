@@ -1,8 +1,8 @@
 <img align="right" width="150" height="150" src="https://github.com/dcaley5005/Data_Science/blob/main/Syracuse/Applied%20Data%20Science%20Portfolio/syracuse_logo.png">
 
-# IST 718 - Big Data Analytics
+# Big Data Analytics
 
-After taking this course, the students will be able to:
+After taking completing this project I was able to:
 1. Obtain data and explain data structures and data elements.
 2. Scrub data by applying scripting methods, to include debugging, for data manipulation in Python, R or other languages.
 3. Explore data by analyzing using qualitative techniques including descriptive statistics, summarization, and visualizations.
