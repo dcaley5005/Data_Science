@@ -1,0 +1,3 @@
+"0",""
+"0","# Creating a barplot for the top 20 words"
+"0","barplot(head(sort(WordFreq, decreasing = TRUE),10), main = ""Ten Most Common Words"")"

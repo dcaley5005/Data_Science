@@ -1,0 +1,6 @@
+"0","TrainClassFlix <- ClassFlix[ClassFlix$Train==TRUE,]"
+"0","TrainClassFlix <- TrainClassFlix[ , -which(names(TrainClassFlix) %in% c(""Train"",""Test"", ""random_seed"", ""model_group"", ""Clusters""))]"
+"0",""
+"0","TestClassFlix <- ClassFlix[ClassFlix$Test==TRUE,]"
+"0","TestClassFlix <- TestClassFlix[ , -which(names(TestClassFlix) %in% c(""Train"",""Test"", ""random_seed"", ""model_group"", ""Clusters""))]"
+"0",""

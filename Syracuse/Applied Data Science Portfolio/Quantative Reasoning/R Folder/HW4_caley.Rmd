@@ -1,0 +1,118 @@
+---
+title: "Homework 4"
+author: "Daniel Caley"
+date: "7/10/2021"
+output: 
+  pdf_document:
+  toc: TRUE
+---
+
+# Questions for this Week
+The homework for Week 4 is exercises 7-10 on page 66
+
+# Question 7
+## Plant Growth - Summary
+The built‐in `PlantGrowth` data set contains three different groups, each representing a different plant food diet (you may need to type `data(PlantGrowth)` to activate it). The group labeled `“ctrl”` is the control group, while the other two groups are each a different type of experimental treatment. Run the `summary()` command on `PlantGrowth` and explain the output. 
+
+```{r}
+data("PlantGrowth")
+
+summary(PlantGrowth)
+
+```
+
+
+## Plant Growth - Histogram
+Create a histogram of the ctrl group. 
+As a hint about R syntax, here is one way that you can access the ctrl group data:
+`PlantGrowth$weight[PlantGrowth$group==”ctrl”]`
+Also create histograms of the `trt1` and `trt2` groups. 
+
+```{r}
+
+hist(PlantGrowth$weight[PlantGrowth$group=="ctrl"])
+hist(PlantGrowth$weight[PlantGrowth$group=="trt1"])
+hist(PlantGrowth$weight[PlantGrowth$group=="trt2"])
+
+```
+
+## Planet Growth - Discriptive Statistics
+```{r}
+
+sd(PlantGrowth$weight[PlantGrowth$group=="ctrl"])
+sd(PlantGrowth$weight[PlantGrowth$group=="trt1"])
+sd(PlantGrowth$weight[PlantGrowth$group=="trt2"])
+mean(PlantGrowth$weight[PlantGrowth$group=="ctrl"])
+mean(PlantGrowth$weight[PlantGrowth$group=="trt1"])
+mean(PlantGrowth$weight[PlantGrowth$group=="trt2"])
+
+
+```
+
+
+## Interpreting Histogram
+What can you say about the differences in the groups by looking at the histograms?
+
+- The min and max for the ctrl is between 4.0 - 6.5, trl1 is between 3.5 - 6.5 without a 5.0 bin, and trl2 is between 5 and 6.
+- Trl1 has 2 peaks where trl 2 only has 1 peak and the ctl has the highest peak.
+
+
+\pagebreak
+
+# Question 8
+## PlantGrowth Boxplot
+Create a `boxplot` of the plant growth data, using the model “weight ~ group.”
+
+```{r}
+
+boxplot(weight ~ group, PlantGrowth)
+
+
+```
+
+## Interpretting the Results
+ What can you say about the differences in the groups by looking at the `boxplots` for the different groups?
+
+- Each have a different median, the thick black line illustrates this.
+- The the minimum value or the lower wisker is all different
+- Although the maximum value or the upper wisker is different, each of them are not too far off.
+
+\pagebreak
+# Question 9
+## T-Test ctrl vs. trt1
+Run a t‐test to compare the means of `ctrl` and `trt1` in the `PlantGrowth` data. 
+
+
+```{r}
+
+dfCtrl <- PlantGrowth$weight[PlantGrowth$group=="ctrl"]
+dfTrt1 <- PlantGrowth$weight[PlantGrowth$group=="trt1"]
+
+t.test(dfCtrl, dfTrt1)
+
+```
+
+## T-Test ctrl vs. trt1 Interpreting the Results
+Report and interpret the confidence interval. Make sure to include a carefully worded statement about what the confidence interval implies with respect to the population mean difference between the `ctrl` and `trt1` groups.
+
+- 95% of the mean weight difference falls between -0.2875 and 1.0295.  Meaning that with 95% confidence the average weight difference between Ctrl and Trt1 will full between -0.2875 and 1.0295.  Although the p-value is 0.2504 which is quite a high p-value.
+
+\pagebreak
+# Question 10
+## T-Test ctrl vs. trt2
+Run a t‐test to compare the means of `ctrl` and `trt2` in the `PlantGrowth` data. 
+
+```{r}
+
+dfTrt2 <- PlantGrowth$weight[PlantGrowth$group=="trt2"]
+
+t.test(dfCtrl, dfTrt2)
+
+```
+
+
+## T-Test ctrl vs. trt2 Interpreting the Results
+Report and interpret the confidence interval.
+
+- 95% of the mean weight difference falls between -0.9828 and 0.00512.  Meaning that with 95% confidence the average weight difference between Ctrl and Trt2 will full between -0.9828 and 0.00512.  Here though the p-value is 0.0479 which in statistics a p-value under 0.05 is pretty good. 
+

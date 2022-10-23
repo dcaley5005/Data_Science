@@ -1,6 +1,0 @@
-"0",""
-"0","print(paste0(""Average IMDb Score: "", mean(CleanFlix$`Imdb Score`)))"
-"1","[1]"
-"1"," ""Average IMDb Score: 6.23044776119403"""
-"1","
-"

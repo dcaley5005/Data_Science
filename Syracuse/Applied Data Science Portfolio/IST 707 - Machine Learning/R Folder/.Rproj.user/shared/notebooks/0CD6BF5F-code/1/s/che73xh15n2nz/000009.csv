@@ -1,6 +1,0 @@
-"0",""
-"0","ggplot(data=ClusterFlix, aes(x=`Imdb Score`, fill=Clusters))+"
-"0","  geom_bar(stat=""count"") +"
-"0","  labs(title = ""Comparing Different Clusters"") +"
-"0","  theme(plot.title = element_text(hjust=0.5), text=element_text(size=15))"
-"0",""

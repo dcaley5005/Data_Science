@@ -1,7 +1,0 @@
-"0",""
-"0","tree_rsq <- mean(tree.model$resample$Rsquared)"
-"0","tree_rmse <- mean(tree.model$resample$RMSE)"
-"0",""
-"0","Rsquared <- data.frame(cbind(Rsquared, tree_rsq))"
-"0","RMSE <- data.frame(cbind(RMSE,tree_rmse))"
-"0",""

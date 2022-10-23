@@ -1,7 +1,0 @@
-"0",""
-"0","# Train Tree Model 1"
-"0","set.seed(73)"
-"0","TreeFlix <- rpart(Rating ~ ., data = TrainClassFlix, method=""class"", control=rpart.control(cp=0, maxdepth = 5))"
-"0","ClassPredicted <- predict(TreeFlix, TestClassFlix, type=""class"")"
-"0","ClassFlixResults <- data.frame(Actual=TestClassFlix$Rating, TrainTreeModel1 = ClassPredicted)"
-"0",""

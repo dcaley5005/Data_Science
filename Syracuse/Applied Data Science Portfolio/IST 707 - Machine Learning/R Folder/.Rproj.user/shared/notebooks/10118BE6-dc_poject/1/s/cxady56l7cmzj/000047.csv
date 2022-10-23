@@ -1,7 +1,0 @@
-"0",""
-"0",""
-"0","CleanFlix %>% ggplot() +"
-"0","                aes(x = Rating) +"
-"0","                geom_bar(fill = ""Salmon"", color = ""Black"") +"
-"0","                theme_minimal() +"
-"0","                ylab(""Count"")"

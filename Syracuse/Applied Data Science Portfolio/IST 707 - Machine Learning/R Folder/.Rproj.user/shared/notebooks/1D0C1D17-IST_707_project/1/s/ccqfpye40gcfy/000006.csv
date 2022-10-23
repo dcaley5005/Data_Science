@@ -1,8 +1,0 @@
-"0",""
-"0","rf_rsq <- mean(rf.model$resample$Rsquared)"
-"0","rf_rmse <- mean(rf.model$resample$RMSE)"
-"0",""
-"0","Rsquared <- data.frame(cbind(Rsquared, rf_rsq))"
-"0","RMSE <- data.frame(cbind(RMSE,rf_rmse))"
-"0",""
-"0",""

@@ -1,0 +1,8 @@
+"0",""
+"0",""
+"0","CleanFlix %>% mutate(region_type = if_else(internation_flag == FALSE,""Domestic"",""International"")) %>% "
+"0","                    ggplot(aes(x = `Imdb Score`)) +"
+"0","                      geom_histogram(bins = 30L, fill = ""magenta"", color = ""black"") +"
+"0","                      theme_minimal() +"
+"0","                      facet_wrap(vars(region_type)) +"
+"0","                      ylab(""Count"")"

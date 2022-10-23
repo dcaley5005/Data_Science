@@ -1,0 +1,4 @@
+"0",""
+"0","# Plot the decision tree"
+"0","fancyRpartPlot(TreeFlix,palettes=c(""Blues"", ""Reds""), main=""Rating Decision Tree"", sub = """")"
+"0",""

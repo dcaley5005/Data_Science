@@ -1,6 +1,0 @@
-"0",""
-"0","plot_title <- paste0(""Cluster "",x)"
-"0"," pcom <- prcomp(Netflix_Norm_DF_Freq, scale. = TRUE)"
-"0","ggplot2::autoplot(pcom, data = Netflix_Norm_DF_Freq, colour = 'Clusters', frame = TRUE, frame.type = 'norm') +"
-"0","   ggtitle(plot_title)"
-"0",""

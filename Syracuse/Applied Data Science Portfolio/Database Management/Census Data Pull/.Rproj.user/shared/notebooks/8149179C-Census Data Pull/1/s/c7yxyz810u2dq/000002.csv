@@ -1,0 +1,29 @@
+"0","#county_list <- unique(db_geo_county_state_map$county_id)"
+"0",""
+"0","db_covid <-  read_csv(""https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-counties.csv"") %>% "
+"0","                              arrange(date, fips) %>% "
+"0","                              mutate("
+"0","                                     covid_id = str_pad(row_number(), 10, pad = ""0""),"
+"0","                                     county_id = if_else(county == 'New York City' ,'36061',fips),"
+"0","                                     deaths = if_else(is.na(deaths),0, deaths),"
+"0","                                     cases = if_else(is.na(cases), 0, cases)"
+"0","                                     ) %>% "
+"0","                              group_by(county_id) %>% "
+"0","                              mutate("
+"0","                                     cases = cases - coalesce(lag(cases, 1),0),"
+"0","                                     deaths  = deaths - coalesce(lag(deaths, 1),0)"
+"0","                                     ) %>% "
+"0","                              #filter(county_id %in% county_list) %>% "
+"0","                              select(covid_id, county_id, date, cases, deaths)"
+"2","
+[36m──[39m [1m[1mColumn specification[1m[22m [36m───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────[39m
+cols(
+  date = [34mcol_date(format = """")[39m,
+  county = [31mcol_character()[39m,
+  state = [31mcol_character()[39m,
+  fips = [31mcol_character()[39m,
+  cases = [32mcol_double()[39m,
+  deaths = [32mcol_double()[39m
+)
+
+"

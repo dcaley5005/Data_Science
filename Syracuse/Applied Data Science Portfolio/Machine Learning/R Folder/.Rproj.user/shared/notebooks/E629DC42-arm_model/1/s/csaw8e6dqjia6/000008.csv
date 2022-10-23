@@ -1,0 +1,45 @@
+"0",""
+"0","MyNetflix <- read_csv(""data/netflixData.csv"")"
+"2","
+[36m──[39m [1m[1mColumn specification[1m[22m [36m──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────[39m
+cols(
+  `Show Id` = [31mcol_character()[39m,
+  Title = [31mcol_character()[39m,
+  Description = [31mcol_character()[39m,
+  Director = [31mcol_character()[39m,
+  Genres = [31mcol_character()[39m,
+  Cast = [31mcol_character()[39m,
+  `Production Country` = [31mcol_character()[39m,
+  `Release Date` = [32mcol_double()[39m,
+  Rating = [31mcol_character()[39m,
+  Duration = [31mcol_character()[39m,
+  `Imdb Score` = [31mcol_character()[39m,
+  `Content Type` = [31mcol_character()[39m,
+  `Date Added` = [31mcol_character()[39m
+)
+
+"
+"0","CleanFlix <- MyNetflix %>% filter("
+"0","                                  `Production Country` %like% ""United States"" &"
+"0","                                  `Content Type` == ""Movie"" &"
+"0","                                  Director != """" &"
+"0","                                  Cast != """""
+"0","                                  ) %>% "
+"0","                           mutate("
+"0","                                  `Imdb Score` = as.numeric(str_remove(`Imdb Score`,""/10"")),"
+"0","                                  Duration = as.numeric((str_remove(Duration, "" min""))),"
+"0","                                  Duration_bins = as.ordered(ceiling(Duration / 30) * 30),"
+"0","                                  internation_flag = str_count(`Production Country`) != 13"
+"0","                           ) %>% dplyr::select(-`Date Added`)"
+"0"," "
+"0",""
+"0","## Cleaning the Ratings"
+"0","CleanFlix <- CleanFlix %>% dplyr::mutate("
+"0","                                  Rating = str_remove(Rating,""TV-""),"
+"0","                                  Rating = case_when(Rating == ""Y"" ~ ""G"","
+"0","                                                     Rating == ""Y7"" ~ ""PG"","
+"0","                                                     Rating == ""14"" ~ ""PG-13"","
+"0","                                                     Rating == ""MA"" ~ ""R"","
+"0","                                                     TRUE ~ Rating)"
+"0","                                  ) %>% filter(!is.na(`Imdb Score`))"
+"0",""

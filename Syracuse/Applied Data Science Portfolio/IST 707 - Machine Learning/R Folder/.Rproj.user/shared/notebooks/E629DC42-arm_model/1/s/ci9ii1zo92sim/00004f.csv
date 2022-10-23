@@ -1,3 +1,0 @@
-"0","GenreTransactions <- read.transactions(""FlixGenre.csv"", format = ""basket"", sep="","")
-"
-"2","removing duplicated items in transactions"

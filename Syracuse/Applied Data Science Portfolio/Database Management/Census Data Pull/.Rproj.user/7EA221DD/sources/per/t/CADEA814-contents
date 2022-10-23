@@ -1,0 +1,145 @@
+---
+title: "Data Pull and Transformation"
+author: "Daniel Caley"
+date: "5/10/2021"
+output: html_document
+---
+
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(tidycensus)
+library(plotly)
+library(stringr)
+library(lubridate)
+
+`%notin%` <- negate(`%in%`)
+
+# census_api_key(api_key, install = TRUE)
+# readRenviron("~/.Renviron")
+api_key <- "f4c735caedf3cabe35997343d8f5502aa0ca322f"
+
+```
+
+
+```{r setup, include=FALSE}
+
+db_covid <-  read_csv("https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-counties.csv") %>% 
+                              arrange(date, fips) %>% 
+                              mutate(
+                                     covid_id = str_pad(row_number(), 10, pad = "0"),
+                                     county_id = if_else(county == 'New York City' ,'36061',fips),
+                                     deaths = if_else(is.na(deaths),0, deaths),
+                                     cases = if_else(is.na(cases), 0, cases)
+                                     ) %>% 
+                              group_by(county_id) %>% 
+                              mutate(
+                                     cases = cases - coalesce(lag(cases, 1),0),
+                                     deaths  = deaths - coalesce(lag(deaths, 1),0)
+                                     ) %>% 
+                              #filter(county_id %in% county_list) %>% 
+                              select(covid_id, county_id, date, cases, deaths)
+
+covid_hospital <-  read_csv("https://raw.githubusercontent.com/nychealth/coronavirus-data/master/trends/data-by-day.csv")
+covid_hospital$date <- as.Date(covid_hospital$date_of_interest, format =  "%m/%d/%Y")
+covid_hospital <- covid_hospital %>% select(date, HOSPITALIZED_COUNT) %>% 
+                  dplyr::rename(hospitizations = HOSPITALIZED_COUNT) %>% 
+                  as_tibble()
+
+
+
+```
+
+
+```{r}
+
+
+covid_summary <- db_covid %>% group_by(date) %>% 
+                      summarise(across(cases:deaths, ~ sum(.x, na.rm = TRUE))) %>% 
+                      left_join(covid_hospital, by = c("date"="date"))
+
+covid_summary <- covid_summary %>% 
+                      mutate(across(c(cases, deaths, hospitizations), list(rolling = ~ slider::slide_dbl(., sum, .before = 6)))) %>% 
+                      mutate(deaths_rolling_norm = lag(deaths_rolling, 17),
+                             hospitizations_rolling_norm = lag(hospitizations_rolling, 11),
+                             deaths_per_cases = deaths_rolling_norm / cases_rolling,
+                             hospitizations_per_cases = hospitizations_rolling_norm / cases_rolling,
+                             hospitizations_per_deaths = hospitizations_rolling_norm / deaths_rolling_norm,
+                             hospitizations_per_cases = if_else(hospitizations_per_cases<0,0,hospitizations_per_cases))
+
+
+```
+
+
+
+```{r message=FALSE, warning=FALSE}
+
+
+ggplotly(
+  covid_summary %>% ggplot() +
+                      geom_line(aes(x = date, y = cases_rolling)) +
+                      geom_col(aes(x = date, y = cases_rolling, fill = cases_rolling)) +
+                      scale_y_continuous(labels = scales::comma) +
+                      scale_fill_gradient(name = "", labels = scales::comma) +
+                      #scale_fill_gradient(low = "green", high = "red", na.value = NA) +
+                      labs(
+                        title = "COVID Cases Trailing 7 Days",
+                        x = "",
+                        y = "COVID Cases"
+                      )
+)
+
+
+ggplotly(
+  covid_summary %>% filter(date >= '2020-03-17' & date <= today() - 18) %>% 
+                    ggplot() +
+                      geom_line(aes(x = date, y = deaths_per_cases)) +
+                      geom_col(aes(x = date, y = deaths_per_cases, fill = deaths_per_cases)) +
+                      scale_y_continuous(labels = scales::percent) +
+                      scale_fill_gradient(low = "green", high = "red", na.value = NA, name = "", labels = scales::percent) +
+                      #theme(text = element_text(size=20)) +
+                      labs(
+                        title = "Percentage of COVID Deaths",
+                        x = "",
+                        y = "Death Over Cases"
+                      )
+)
+
+
+ggplotly(
+  covid_summary  %>% filter(date >= '2020-03-17' & date <= today() - 12) %>% 
+                    filter(date >= "2020-07-01") %>% 
+                    ggplot() +
+                      geom_line(aes(x = date, y = hospitizations_per_cases)) +
+                      geom_col(aes(x = date, y = hospitizations_per_cases, fill = hospitizations_per_cases)) +
+                      scale_y_continuous(name = "", labels = scales::percent) +
+                      scale_fill_gradient(name = "", labels = scales::percent) +
+                      #theme(text = element_text(size=20)) +
+                      #scale_fill_gradient(low = "green", high = "red", na.value = NA) +
+                      labs(
+                        title = "COVID Deaths Over Hospitizations",
+                        x = "",
+                        y = "Hospitizations Over cases"
+                      )
+)
+
+
+ggplotly(
+  covid_summary %>% filter(date >= '2020-03-17' & date <= today() - 18) %>% 
+                    filter(date >= "2020-07-01") %>% ggplot() +
+                      geom_line(aes(x = date, y = hospitizations_per_deaths)) +
+                      geom_col(aes(x = date, y = hospitizations_per_deaths, fill = hospitizations_per_deaths)) +
+                      scale_y_continuous(name = "", labels = scales::percent) +
+                      scale_fill_gradient(name = "", labels = scales::percent) +
+                      # theme(text = element_text(size=20)) +
+                      #scale_fill_gradient(low = "green", high = "red", na.value = NA) +
+                      labs(
+                        title = "COVID Deaths Over Hospitizations",
+                        x = "",
+                        y = "Deaths Over Hosipitizations"
+                      )
+) 
+
+
+```
+

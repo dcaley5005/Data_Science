@@ -1,0 +1,6 @@
+"0",""
+"0",""
+"0","ggplot(CleanFlix) +"
+"0","  aes(x = Duration_bins, y = `Imdb Score`) +"
+"0","  geom_boxplot(shape = ""circle"", fill = ""lightgreen"", color = ""black"") +"
+"0","  theme_minimal()"

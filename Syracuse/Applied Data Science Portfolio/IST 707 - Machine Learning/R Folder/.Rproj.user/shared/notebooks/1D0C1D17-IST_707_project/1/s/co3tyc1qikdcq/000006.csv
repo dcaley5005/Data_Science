@@ -1,7 +1,0 @@
-"0",""
-"0","knn_rsq <- mean(knn.model$resample$Rsquared)"
-"0","knn_rmse <- mean(knn.model$resample$RMSE)"
-"0",""
-"0","Rsquared <- data.frame(cbind(Rsquared, knn_rsq))"
-"0","RMSE <- data.frame(cbind(RMSE,knn_rmse))"
-"0",""

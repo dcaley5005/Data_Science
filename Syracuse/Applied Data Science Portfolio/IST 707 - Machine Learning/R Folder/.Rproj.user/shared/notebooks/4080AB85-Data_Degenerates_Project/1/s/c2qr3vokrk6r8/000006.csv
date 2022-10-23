@@ -1,3 +1,0 @@
-"0",""
-"0","test <- ModelFlix %>% filter(model_group==""Test"") %>% dplyr::select(`Imdb Score`, Rating, Duration_bins, internation_flag)"
-"0",""

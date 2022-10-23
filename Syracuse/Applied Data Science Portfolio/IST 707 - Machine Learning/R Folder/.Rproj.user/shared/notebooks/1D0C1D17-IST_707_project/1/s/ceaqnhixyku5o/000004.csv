@@ -1,7 +1,0 @@
-"0","ggplot(CleanFlix) +"
-"0","  aes(x = `Imdb Score`) +"
-"0","  geom_histogram(bins = 30L, fill = ""Salmon"", color = ""Black"") +"
-"0","  theme_minimal() +"
-"0","  ylab(""Count"") +"
-"0","  ggtitle(""IMDb Score"") +"
-"0","  geom_vline(aes(xintercept=mean(`Imdb Score`)), col=""Blue"")"

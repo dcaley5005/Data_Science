@@ -1,0 +1,28 @@
+{
+    "id": "CADEA814",
+    "path": "~/Documents/Syracuse/1 - Winter 2021/IST 659 - Database Mgt /IST 659 - Project/Census Data Pull/us_covid_cases.Rmd",
+    "project_path": "us_covid_cases.Rmd",
+    "type": "r_markdown",
+    "hash": "1218354862",
+    "contents": "",
+    "dirty": false,
+    "created": 1620698855972.0,
+    "source_on_save": false,
+    "relative_order": 1,
+    "properties": {
+        "tempName": "Untitled1",
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "141,0",
+        "scrollLine": "123",
+        "last_setup_crc32": "A5FB8CAF28268207"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1642883117,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1642883117963,
+    "read_only": false,
+    "read_only_alternatives": []
+}

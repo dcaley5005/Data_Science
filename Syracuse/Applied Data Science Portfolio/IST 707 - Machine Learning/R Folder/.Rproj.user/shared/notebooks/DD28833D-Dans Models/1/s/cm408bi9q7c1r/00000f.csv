@@ -1,8 +1,0 @@
-"0",""
-"0","svm_rsq <- mean(svm.model$resample$Rsquared)"
-"0","svm_rmse <- mean(svm.model$resample$RMSE)"
-"0",""
-"0","Rsquared <- data.frame(svm_rsq)"
-"0","RMSE <- data.frame(svm_rmse)"
-"0","  "
-"0","  "
