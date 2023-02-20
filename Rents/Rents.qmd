@@ -1,0 +1,73 @@
+---
+title: "Rents"
+format: html
+editor: visual
+---
+
+
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+library(tidyverse)
+library(lubridate)
+library(ggplot2)
+library(plotly)
+
+```
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+
+zillow_data <- "https://files.zillowstatic.com/research/public_csvs/zori/County_zori_sm_month.csv"
+zillow_data <- read_csv(zillow_data)
+
+sd_data <- zillow_data %>% filter(RegionName %in% c('San Diego County','Maricopa County', 'New York County'))
+
+sd_data <- sd_data %>% select(-RegionID,	-SizeRank,	-RegionType,	-StateName,	
+                              -State,	-Metro,	-StateCodeFIPS,	-MunicipalCodeFIPS) %>% 
+  pivot_longer(!RegionName, names_to = "rent_date", values_to = "avg_rents") 
+
+
+```
+
+
+
+```{r}
+
+sd_data <- sd_data %>% group_by(RegionName) %>% 
+                    mutate(avg_rents_yy = avg_rents / lag(avg_rents, 24) -1)
+
+
+```
+
+```{r}
+
+ggplotly(
+  sd_data %>% filter(rent_date >= ymd('2016-03-31')) %>% 
+                  ggplot(aes(x = rent_date, y = avg_rents_yy, color = RegionName, group = 1)) +
+                    geom_point() + 
+                    geom_line() +
+                    theme(axis.text.x = element_text(angle = 45)) +
+                    scale_y_continuous(labels = scales::percent)
+)
+
+
+
+```
+
+
+```{r}
+
+ggplotly(
+  sd_data %>% filter(RegionName != 'New York County') %>% 
+                  ggplot(aes(x = rent_date, y = avg_rents, color = RegionName, group = 1)) +
+                    geom_point() + 
+                    geom_line() +
+                    theme(axis.text.x = element_text(angle = 45)) +
+                    scale_y_continuous(labels = scales::dollar)
+)
+
+
+
+```
+
