@@ -4,8 +4,6 @@ format: html
 editor: visual
 ---
 
-
-
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 
 library(tidyverse)
@@ -18,7 +16,8 @@ library(plotly)
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 
 
-zillow_data <- "https://files.zillowstatic.com/research/public_csvs/zori/County_zori_sm_month.csv"
+##zillow_data <- "https://files.zillowstatic.com/research/public_csvs/zori/County_zori_sm_month.csv"
+zillow_data <- "County_zori_uc_sfrcondomfr_sm_month.csv"
 zillow_data <- read_csv(zillow_data)
 
 sd_data <- zillow_data %>% filter(RegionName %in% c('San Diego County','Maricopa County', 'New York County'))
@@ -29,8 +28,6 @@ sd_data <- sd_data %>% select(-RegionID,	-SizeRank,	-RegionType,	-StateName,
 
 
 ```
-
-
 
 ```{r}
 
@@ -55,7 +52,6 @@ ggplotly(
 
 ```
 
-
 ```{r}
 
 ggplotly(
@@ -70,4 +66,3 @@ ggplotly(
 
 
 ```
-
